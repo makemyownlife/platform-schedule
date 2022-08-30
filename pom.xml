@@ -42,7 +42,7 @@
         <logback.version>1.2.10</logback.version>
         <freemarker.version>2.3.23</freemarker.version>
         <fastjson.version>1.2.69_noneautotype</fastjson.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <httpclient.version>4.5.5</httpclient.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <commons-lang3.version>3.4</commons-lang3.version>
