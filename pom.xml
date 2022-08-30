@@ -48,7 +48,7 @@
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-email.version>1.5</commons-email.version>
         <mybatis-spring.version>2.0.7</mybatis-spring.version>
-        <mybatis.version>3.4.1</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <druid.version>1.1.21</druid.version>
         <quartz.version>2.3.0</quartz.version>
         <spring-boot.version>2.3.8.RELEASE</spring-boot.version>
