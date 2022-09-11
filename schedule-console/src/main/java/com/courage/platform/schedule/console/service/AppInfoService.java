@@ -2,7 +2,7 @@ package com.courage.platform.schedule.console.service;
 
 import com.courage.platform.schedule.console.util.Md5Util;
 import com.courage.platform.schedule.dao.AppinfoDao;
-import com.courage.platform.schedule.dao.domain.Appinfo;
+import com.courage.platform.schedule.dao.domain.AppInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,19 @@ public class AppInfoService {
     @Autowired
     private AppinfoDao appinfoDao;
 
-    public List<Appinfo> getAll() {
+    public List<AppInfo> getAll() {
         return appinfoDao.findAll();
     }
 
-    public Appinfo getByAppKey(String appKey) {
+    public AppInfo getByAppKey(String appKey) {
         return appinfoDao.findAppinfoByAppKey(appKey);
     }
 
-    public Appinfo getById(String id) {
+    public AppInfo getById(String id) {
         return appinfoDao.findAppinfoById(id);
     }
 
-    public List<Appinfo> getPage(Map param, String start, Integer pageSize) {
+    public List<AppInfo> getPage(Map param, String start, Integer pageSize) {
         param.put("start", Integer.valueOf(start));
         param.put("pageSize", pageSize);
         return appinfoDao.findPage(param);
@@ -56,7 +56,7 @@ public class AppInfoService {
         return maxAppKey + 1;
     }
 
-    public void addAppInfo(Appinfo appinfo) {
+    public void addAppInfo(AppInfo appinfo) {
         appinfo.setAppKey(String.valueOf(getMaxAppKey()));
         appinfo.setAppSecret(Md5Util.getMd5Code(appinfo.getAppName() + UUID.randomUUID().toString()));
         appinfo.setCreateTime(new Date());
@@ -64,7 +64,7 @@ public class AppInfoService {
         appinfoDao.insertAppInfo(appinfo);
     }
 
-    public void update2(Appinfo appinfo) {
+    public void update2(AppInfo appinfo) {
         appinfoDao.update2(appinfo);
     }
 

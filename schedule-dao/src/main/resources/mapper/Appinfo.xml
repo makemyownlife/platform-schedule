@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.courage.platform.schedule.dao.AppinfoDao" >
 
-    <resultMap id="appinfo" type="com.courage.platform.schedule.dao.domain.Appinfo" >
+    <resultMap id="appinfo" type="com.courage.platform.schedule.dao.domain.AppInfo" >
         <result column="id" property="id" />
         <result column="app_key" property="appKey" />
         <result column="app_secret" property="appSecret" />
@@ -49,7 +49,7 @@
         ORDER BY t.id ASC
     </select>
 
-    <insert id="insertAppInfo" parameterType="com.courage.platform.schedule.dao.domain.Appinfo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertAppInfo" parameterType="com.courage.platform.schedule.dao.domain.AppInfo" useGeneratedKeys="true" keyProperty="id">
         insert into t_platform_appinfo
         (
         <if test="appKey != null and appKey != ''">app_key,</if>
@@ -72,7 +72,7 @@
         )
     </insert>
 
-    <update id="updateAppInfo" parameterType="com.courage.platform.schedule.dao.domain.Appinfo">
+    <update id="updateAppInfo" parameterType="com.courage.platform.schedule.dao.domain.AppInfo">
         update t_platform_appinfo
         <set>
             <if test=" appId != ''">app_id = #{appId},</if>
@@ -117,7 +117,7 @@
         select  max(app_key)  from t_platform_appinfo
     </select>
 
-    <update id="update2" parameterType="com.courage.platform.schedule.dao.domain.Appinfo">
+    <update id="update2" parameterType="com.courage.platform.schedule.dao.domain.AppInfo">
         update t_platform_appinfo t set t.app_name = #{appName} , t.remark = #{remark} , t.update_time = now() where t.id = #{id}
     </update>
 

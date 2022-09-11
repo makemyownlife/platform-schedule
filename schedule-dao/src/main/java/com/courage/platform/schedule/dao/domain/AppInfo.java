@@ -6,7 +6,7 @@ import java.util.Date;
  * @author zhangjiarong
  * 2018/7/5
  */
-public class Appinfo {
+public class AppInfo {
 
     private int id;
 

@@ -3,7 +3,7 @@ package com.courage.platform.schedule.console.controller;
 import com.courage.platform.schedule.console.service.AppInfoService;
 import com.courage.platform.schedule.console.service.ScheduleJobInfoService;
 import com.courage.platform.schedule.console.service.ScheduleJobLogService;
-import com.courage.platform.schedule.dao.domain.Appinfo;
+import com.courage.platform.schedule.dao.domain.AppInfo;
 import com.courage.platform.schedule.dao.domain.ScheduleJobInfo;
 import com.courage.platform.schedule.dao.domain.ScheduleJobLog;
 import org.quartz.CronExpression;
@@ -54,8 +54,8 @@ public class ScheduleController {
 
     @RequestMapping("/addjobpage")
     public String addjobpage(Model model) {
-        List<Appinfo> appinfoList = appInfoService.getAll();
-        model.addAttribute("appinfoList", appinfoList);
+        List<AppInfo> appInfoList = appInfoService.getAll();
+        model.addAttribute("appinfoList", appInfoList);
         return "schedule/jobadd";
     }
 
@@ -63,8 +63,8 @@ public class ScheduleController {
     public String updatejobpage(Model model, HttpServletRequest httpServletRequest) {
         String jobId = httpServletRequest.getParameter("id");
         ScheduleJobInfo scheduleJobInfo = scheduleJobInfoService.getById(jobId);
-        List<Appinfo> appinfoList = appInfoService.getAll();
-        model.addAttribute("appinfoList", appinfoList);
+        List<AppInfo> appInfoList = appInfoService.getAll();
+        model.addAttribute("appinfoList", appInfoList);
         model.addAttribute("scheduleJobInfo", scheduleJobInfo);
         return "schedule/jobupdate";
     }
@@ -108,7 +108,7 @@ public class ScheduleController {
             map.put("msg", "请检查cron表达式");
             return map;
         }
-        Appinfo appinfo = appInfoService.getById((String) params.get("appId"));
+        AppInfo appinfo = appInfoService.getById((String) params.get("appId"));
         params.put("appName", appinfo.getAppName());
         params.put("status", 0);
         scheduleJobInfoService.insert(params);
@@ -128,7 +128,7 @@ public class ScheduleController {
             map.put("msg", "请检查cron表达式");
             return map;
         }
-        Appinfo appinfo = appInfoService.getById((String) params.get("appId"));
+        AppInfo appinfo = appInfoService.getById((String) params.get("appId"));
         params.put("appName", appinfo.getAppName());
         scheduleJobInfoService.update(params);
         Map map = new HashMap();

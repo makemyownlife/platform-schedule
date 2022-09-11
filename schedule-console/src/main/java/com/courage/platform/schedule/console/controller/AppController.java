@@ -5,7 +5,7 @@ import com.courage.platform.schedule.console.service.AppInfoService;
 import com.courage.platform.schedule.console.service.PlatformNamesrvService;
 import com.courage.platform.schedule.console.service.ScheduleJobInfoService;
 import com.courage.platform.schedule.console.util.Md5Util;
-import com.courage.platform.schedule.dao.domain.Appinfo;
+import com.courage.platform.schedule.dao.domain.AppInfo;
 import com.courage.platform.schedule.dao.domain.PlatformNamesrv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class AppController {
         param.put("length", length);
         param.put("appName", appName);
 
-        List<Appinfo> list = appInfoService.getPage(param, start, Integer.valueOf(length));
+        List<AppInfo> list = appInfoService.getPage(param, start, Integer.valueOf(length));
         Integer count = appInfoService.count(param);
 
         Map<String, Object> maps = new HashMap<String, Object>();
@@ -82,7 +82,7 @@ public class AppController {
             String remark = httpServletRequest.getParameter("remark");
             logger.info("appName:{} remark:{}", new Object[]{appName, remark});
 
-            Appinfo appinfo = new Appinfo();
+            AppInfo appinfo = new AppInfo();
             appinfo.setAppName(appName);
             appinfo.setRemark(remark);
             appinfo.setAppKey(Md5Util.getMd5Code(appName + UUID.randomUUID().toString()));
@@ -104,7 +104,7 @@ public class AppController {
     @RequestMapping("/applist/updateapppage")
     public String updateapppage(HttpServletRequest httpServletRequest, Model model) {
         String id = httpServletRequest.getParameter("id");
-        Appinfo appinfo = appInfoService.getById(id);
+        AppInfo appinfo = appInfoService.getById(id);
         model.addAttribute("appinfo", appinfo);
         return "appinfo/appupdate";
     }
@@ -117,7 +117,7 @@ public class AppController {
         String remark = httpServletRequest.getParameter("remark");
         logger.info("appName:{} remark:{}", new Object[]{appName, remark});
 
-        Appinfo appinfo = new Appinfo();
+        AppInfo appinfo = new AppInfo();
         appinfo.setId(Integer.valueOf(id));
         appinfo.setAppName(appName);
         appinfo.setRemark(remark);
