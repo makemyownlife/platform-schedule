@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <context:component-scan base-package="com.courage.platform.schedule"/>
+
+    <task:scheduler id="scheduler" pool-size="2"/>
+
+    <task:annotation-driven scheduler="scheduler"/>
+
+    <!-- 加载环境配置 -->
+    <bean id="envConfig" class="com.courage.platform.schedule.worker.configuration.SpringCustomEnviromentConfig">
+        <property name="applicationFile">
+            <value>classpath:application.properties</value>
+        </property>
+        <property name="locations">
+            <list>
+                <value>classpath:application-dev.properties</value>
+                <value>classpath:application-test.properties</value>
+                <value>classpath:application-prod.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- rpc 服务 -->
+    <import resource="spring-rpc.xml"/>
+
+    <!-- 数据源 -->
+    <import resource="spring-datasource.xml"/>
+
+    <!-- 任务分发 -->
+    <import resource="spring-distribute.xml"/>
+
+</beans>

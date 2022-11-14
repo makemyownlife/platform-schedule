@@ -28,8 +28,6 @@
         <!-- 例子
         <module>schedule-demo</module>
         -->
-        <!-- 依赖sofaraft  -->
-        <module>schedule-raft</module>
     </modules>
 
     <properties>

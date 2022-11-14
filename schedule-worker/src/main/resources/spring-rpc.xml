@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:constant id="callBackCmd"
+                   static-field="com.courage.platform.schedule.rpc.protocol.CommandEnum.CALLBACK_SCHEDULE_RESULT_CMD"/>
+
+    <util:constant id="registerCmd"
+                   static-field="com.courage.platform.schedule.rpc.protocol.CommandEnum.REGISTER_CMD"/>
+
+    <util:constant id="consoleTriggerTaskCmd"
+                   static-field="com.courage.platform.schedule.rpc.protocol.CommandEnum.CONSOLE_TRIGGER_SCHEDULE_TASK_CMD"/>
+
+    <util:constant id="consoleOnlineappCmd"
+                   static-field="com.courage.platform.schedule.rpc.protocol.CommandEnum.CONSOLE_ONLINE_APP_CMD"/>
+
+    <util:constant id="consoleHeartbeatCmd"
+                   static-field="com.courage.platform.schedule.rpc.protocol.CommandEnum.CONSOLE_HEARTBEAT_CMD"/>
+
+    <!-- 回调结果处理器  -->
+    <bean id="callbackResultProcessor"
+          class="com.courage.platform.schedule.worker.rpc.processor.CallbackResultProcessor"></bean>
+
+    <!-- 注册处理器 -->
+    <bean id="registerProcessor"
+          class="com.courage.platform.schedule.worker.rpc.processor.RegisterProcessor"></bean>
+
+    <!-- 控制台调用触发任务 -->
+    <bean id="consoleTriggerTaskProcessor"
+          class="com.courage.platform.schedule.worker.rpc.processor.ConsoleTriggerProcessor"></bean>
+
+    <!-- 在线应用处理器 -->
+    <bean id="consoleOnlineappProcessor"
+          class="com.courage.platform.schedule.worker.rpc.processor.ConsoleOnlineAppProcessor"></bean>
+
+    <!-- 心跳处理 -->
+    <bean id="heartbeatProcessor"
+          class="com.courage.platform.schedule.worker.rpc.processor.HeartbeatProcessor"></bean>
+
+    <bean id="channelListener" class="com.courage.platform.schedule.worker.rpc.RpcChannelListener">
+    </bean>
+
+    <!-- 调度rpc server -->
+    <bean id="scheduleRpcServer" class="com.courage.platform.schedule.rpc.ScheduleRpcServer" init-method="start"
+          destroy-method="shutdown">
+        <property name="processorTable">
+            <map>
+                <entry key-ref="callBackCmd" value-ref="callbackResultProcessor"/>
+                <entry key-ref="registerCmd" value-ref="registerProcessor"/>
+                <entry key-ref="consoleTriggerTaskCmd" value-ref="consoleTriggerTaskProcessor"/>
+                <entry key-ref="consoleOnlineappCmd" value-ref="consoleOnlineappProcessor"/>
+                <entry key-ref="consoleHeartbeatCmd" value-ref="heartbeatProcessor"/>
+            </map>
+        </property>
+        <property name="platformChannelEventListener" ref="channelListener"/>
+    </bean>
+
+</beans>
