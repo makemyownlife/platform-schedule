@@ -16,9 +16,9 @@
         <!-- common包 包含zk的相关的操作 -->
         <module>schedule-common</module>
         <!-- 控制台  -->
-        <module>schedule-console</module>
+        <module>schedule-admin</module>
         <!-- 调度服务  -->
-        <module>schedule-server</module>
+        <module>schedule-worker</module>
         <!-- 通讯框架 start -->
         <module>schedule-remoting</module>
         <module>schedule-rpc</module>
