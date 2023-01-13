@@ -11,7 +11,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <modules>
-        <!-- spring支持client -->
+        <!-- 客户端 -->
         <module>schedule-client</module>
         <!-- common包 包含zk的相关的操作 -->
         <module>schedule-common</module>
@@ -19,15 +19,14 @@
         <module>schedule-admin</module>
         <!-- 调度服务  -->
         <module>schedule-worker</module>
-        <!-- 通讯框架 start -->
+        <!-- 通讯框架 -->
         <module>schedule-remoting</module>
+        <!-- rpc 交流 -->
         <module>schedule-rpc</module>
-        <!-- 通讯框架 end  -->
+        <!-- 核心工具类 -->
         <module>schedule-core</module>
+        <!-- 数据库DAO -->
         <module>schedule-dao</module>
-        <!-- 例子
-        <module>schedule-demo</module>
-        -->
     </modules>
 
     <properties>
