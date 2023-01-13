@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>schedule-console</artifactId>
+    <artifactId>schedule-admin</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
