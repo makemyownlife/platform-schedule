@@ -43,7 +43,7 @@ public class ScheduleRpcClient implements ScheduleRpcService {
         this.platformNettyRemotingClient = new PlatformNettyRemotingClient(platformNettyClientConfig);
     }
 
-    public void start() {
+    public synchronized void start() {
         if (!inited) {
             this.platformNettyRemotingClient.start();
             inited = true;
