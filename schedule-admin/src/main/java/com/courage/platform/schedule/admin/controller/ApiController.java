@@ -1,4 +1,4 @@
-package com.courage.platform.schedule.admin.api;
+package com.courage.platform.schedule.admin.controller;
 
 import com.courage.platform.schedule.admin.mvc.PermissionLimit;
 import com.courage.platform.schedule.admin.service.PlatformNamesrvService;
